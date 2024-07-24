@@ -17,9 +17,9 @@ const puppeteer_1 = __importDefault(require("puppeteer"));
 const WebScrapperContants_1 = require("../Utils/WebScrapperContants");
 function Scraper(request, response) {
     return __awaiter(this, void 0, void 0, function* () {
-        const path = request.query.url;
+        const path = request.query.path;
         const domainName = request.query.domainName;
-        const url = `https://${domainName}/${path}`;
+        const url = decodeURIComponent(`http://${domainName}/${path}`);
         const browser = yield puppeteer_1.default.launch();
         const page = yield browser.newPage();
         const userAgent = request.get("user-agent");
